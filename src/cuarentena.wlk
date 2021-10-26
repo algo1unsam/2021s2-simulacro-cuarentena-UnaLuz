@@ -11,7 +11,7 @@ class Persona {
 	var property trabajos
 
 	method sueldo() = trabajos.sum{ trabajo => trabajo.sueldo() }
-	
+
 	method estaEnRiesgo() = edad >= 65 or tieneEnfermedadesPreexistentes
 
 	method trabajoPrincipal() = trabajos.max{ trabajo => trabajo.sueldo() }
@@ -23,7 +23,7 @@ class Persona {
 class Familia {
 
 	var property integrantes
-	
+
 	method sueldo() = integrantes.sum{ integrante => integrante.sueldo() }
 
 	method estaAislada() = integrantes.all{ miembro => miembro.estaEnRiesgo() }
@@ -66,6 +66,34 @@ class TrabajoEsencial inherits Trabajo {
 class TrabajoSanitario inherits TrabajoEsencial {
 
 	override method extra() = super() + 5000
+
+}
+
+class Actividad {
+
+	method puedeRealizarActividad(persona) = not persona.estaEnRiesgo()
+
+}
+
+class Comprar inherits Actividad {
+
+}
+
+class Trabajar inherits Actividad {
+
+	override method puedeRealizarActividad(persona) = super(persona) and not persona.estaInactivo()
+
+}
+
+class Ejercitar inherits Actividad {
+
+	override method puedeRealizarActividad(persona) = super(persona) and pandemia.fase() > 3
+
+}
+
+class Pasear inherits Ejercitar {
+
+	override method puedeRealizarActividad(persona) = if (pandemia.fase() == 5) true else super(persona)
 
 }
 
