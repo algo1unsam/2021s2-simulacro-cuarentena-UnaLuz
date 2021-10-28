@@ -5,11 +5,10 @@ object pandemia { // Es un well known object
 	method fase() = fase
 	
 	method fase(n) {
-		if(n >= 1 and n <= 5){
-			fase = n
-		} else {
+		if(n < 1 or n > 5){
 			self.error("No se puede tener una fase " + n.toString())
 		}
+		fase = n
 	}
 
 }
