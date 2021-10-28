@@ -13,7 +13,7 @@ class Persona {
 
 	method actividades() = actividades
 
-	method realizar(unaActividad) {
+	method salirA(unaActividad) {
 		if(unaActividad.puedeRealizarActividad(self)) self.agregarActividad(unaActividad)
 	}
 
@@ -40,7 +40,7 @@ class Familia {
 	method trabajadoresInactivos() = integrantes.filter{ integrante => integrante.estaInactivo() }
 	
 	method salirA(actividad) {
-		if(self.algunoPuedeSalirA(actividad)) integrantes.forEach{ i => i.realizar(actividad) }
+		if(self.algunoPuedeSalirA(actividad)) integrantes.forEach{ i => i.salirA(actividad) }
 	}
 	
 	method algunoPuedeSalirA(actividad) = integrantes.any{ integrante => actividad.puedeRealizarActividad(integrante) }

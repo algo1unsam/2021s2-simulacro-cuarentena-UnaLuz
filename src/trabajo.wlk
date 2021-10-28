@@ -1,6 +1,16 @@
 object pandemia { // Es un well known object
 
-	var property fase = 1
+	var fase = 1
+	
+	method fase() = fase
+	
+	method fase(n) {
+		if(n >= 1 and n <= 5){
+			fase = n
+		} else {
+			self.error("No se puede tener una fase " + n.toString())
+		}
+	}
 
 }
 

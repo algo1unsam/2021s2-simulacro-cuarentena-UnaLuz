@@ -86,15 +86,15 @@ describe "cuerantena" {
 
 	
 	test "punto 2.2, 2.3 y 2.4.1: salir a pasear ok " {
-		nicolas.realizar(comprar)
-		nicolas.realizar(trabajar)
-		nicolas.realizar(comprar)
+		nicolas.salirA(comprar)
+		nicolas.salirA(trabajar)
+		nicolas.salirA(comprar)
 		assert.equals([comprar, trabajar, comprar], nicolas.actividades())
 	}
 
 
 	test "punto 2.2, 2.3 y 2.4.2: salir a pasear no ok" {
-		milena.realizar(comprar)
+		milena.salirA(comprar)
 		assert.equals([], milena.actividades())
 	}
 
