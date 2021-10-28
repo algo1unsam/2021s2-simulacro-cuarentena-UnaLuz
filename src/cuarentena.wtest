@@ -1,4 +1,5 @@
 import cuarentena.*
+import trabajo.*
 
 describe "cuerantena" {
 
