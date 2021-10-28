@@ -22,6 +22,11 @@ describe "cuerantena" {
 	var mirta
 	// Familia
 	var perezGarcia
+	// Actividades
+	const comprar = new Comprar()
+	const trabajar = new Trabajar()
+	const ejercitar = new Ejercitar()
+	const pasear = new Pasear()
 
 	method initialize() {
 		pandemia.fase(4)
@@ -62,59 +67,58 @@ describe "cuerantena" {
   		assert.equals([milena], perezGarcia.trabajadoresInactivos())
   	}
  
-/* 		
- * 	test "punto 2.1: puede realizar salida" {
- * 		 		
- * 		//TODO: verificar que mirta NO puede salir a comprar
+		
+	test "punto 2.1: puede realizar salida" {
+		assert.notThat(comprar.puedeRealizarActividad(mirta))
 
- * 		//TODO: verificar que nicolas SI puede salir a comprar
- * 		//TODO: verificar que nicolas SI puede salir a ejercitarse
- * 		//TODO: verificar que nicolas SI puede salir a caminar
- * 		//TODO: verificar que nicolas SI puede salir a trabajar
- * 		
+		assert.that(comprar.puedeRealizarActividad(nicolas))
+		assert.that(ejercitar.puedeRealizarActividad(nicolas))
+		assert.that(pasear.puedeRealizarActividad(nicolas))
+		assert.that(trabajar.puedeRealizarActividad(nicolas))
+		
+		pandemia.fase(3)
 
- * 		//TODO: pasar la pandemia a fase 3
+		assert.that(comprar.puedeRealizarActividad(nicolas))
+		assert.notThat(ejercitar.puedeRealizarActividad(nicolas))
+		assert.notThat(pasear.puedeRealizarActividad(nicolas))
+		assert.that(trabajar.puedeRealizarActividad(nicolas))
+	}
 
- * 		//TODO: verificar que nicolas SI puede salir a comprar
- * 		//TODO: verificar que nicolas NO puede salir a ejercitarse
- * 		//TODO: verificar que nicolas NO puede salir a caminar
- * 		//TODO: verificar que nicolas SI puede salir a trabajar
- * 		
- * 	}
- */
-/* 	
- * 	test "punto 2.2, 2.3 y 2.4.1: salir a pasear ok " {
- * 		//TODO hacer que nicolas salga a comprar
- * 		//TODO hacer que nicolas salga a trabajar
- * 		//TODO hacer que nicolas salga a comprar 
- * 		//TODO verificar que las salidas de nicolas son salirAComprar, salirATrabajar y salirAComprar
- * 	}
- */
-/* 
- * 	test "punto 2.2, 2.3 y 2.4.2: salir a pasear no ok" {
- * 		//TODO hacer que milena salga a comprar (No se puede!)
- * 		//TODO verificar que milena no tenga salidas
- * 	}
- */
-/* 
- * 	test "punto 3.1: Salida familiar ok" {
+	
+	test "punto 2.2, 2.3 y 2.4.1: salir a pasear ok " {
+		nicolas.realizar(comprar)
+		nicolas.realizar(trabajar)
+		nicolas.realizar(comprar)
+		assert.equals([comprar, trabajar, comprar], nicolas.actividades())
+	}
 
- * 		// TODO: hacer que perezGarcia salga a comprar 
 
- * 		//TODO: verificar que nicolas tenga la salida salirAComprar 
- * 		//TODO: verificar que mirta no tenga salidas
- * 		//TODO: verificar que milena no tenga salidas 
- * 	}
- */
-/* 
- * 	test "punto 3.1: Salida familiar no ok" {
- * 		var familiaMirtaYMilena = //TODO: obtener/construir una Familia con mirta y milena como integrantes
- * 		
- * 		//TODO: hacer que la familiaMirtaYMilena salga a comprar (no se puede!)
+	test "punto 2.2, 2.3 y 2.4.2: salir a pasear no ok" {
+		//TODO hacer que milena salga a comprar (No se puede!)
+		milena.realizar(comprar)
+		//TODO verificar que milena no tenga salidas
+		assert.equals([], milena.actividades())
+	}
 
- * 		//TODO: verificar que mirta no tenga salidas
- * 		//TODO: verificar que milena no tenga salidas
- * 	}
- */
+
+	test "punto 3.1: Salida familiar ok" {
+
+		// TODO: hacer que perezGarcia salga a comprar 
+
+		//TODO: verificar que nicolas tenga la salida salirAComprar 
+		//TODO: verificar que mirta no tenga salidas
+		//TODO: verificar que milena no tenga salidas 
+	}
+
+
+	test "punto 3.1: Salida familiar no ok" {
+		var familiaMirtaYMilena = //TODO: obtener/construir una Familia con mirta y milena como integrantes
+		
+		//TODO: hacer que la familiaMirtaYMilena salga a comprar (no se puede!)
+
+		//TODO: verificar que mirta no tenga salidas
+		//TODO: verificar que milena no tenga salidas
+	}
+
 }
 

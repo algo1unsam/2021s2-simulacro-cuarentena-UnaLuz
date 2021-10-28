@@ -5,6 +5,17 @@ class Persona {
 	var property edad
 	var property tieneEnfermedadesPreexistentes
 	var property trabajos
+	const actividades = []
+
+	method agregarActividad(unaActividad) {
+		actividades.add(unaActividad)
+	}
+
+	method actividades() = actividades
+
+	method realizar(unaActividad) {
+		if(unaActividad.puedeRealizarActividad(self)) self.agregarActividad(unaActividad)
+	}
 
 	method sueldo() = trabajos.sum{ trabajo => trabajo.sueldo() }
 
