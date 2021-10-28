@@ -38,6 +38,12 @@ class Familia {
 	method trabajosPrincipales() = integrantes.map{ miembro => miembro.trabajoPrincipal() }
 
 	method trabajadoresInactivos() = integrantes.filter{ integrante => integrante.estaInactivo() }
+	
+	method salirA(actividad) {
+		if(self.algunoPuedeSalirA(actividad)) integrantes.forEach{ i => i.realizar(actividad) }
+	}
+	
+	method algunoPuedeSalirA(actividad) = integrantes.any{ integrante => actividad.puedeRealizarActividad(integrante) }
 
 }
 

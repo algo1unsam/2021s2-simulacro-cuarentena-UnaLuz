@@ -94,30 +94,24 @@ describe "cuerantena" {
 
 
 	test "punto 2.2, 2.3 y 2.4.2: salir a pasear no ok" {
-		//TODO hacer que milena salga a comprar (No se puede!)
 		milena.realizar(comprar)
-		//TODO verificar que milena no tenga salidas
 		assert.equals([], milena.actividades())
 	}
 
 
 	test "punto 3.1: Salida familiar ok" {
-
-		// TODO: hacer que perezGarcia salga a comprar 
-
-		//TODO: verificar que nicolas tenga la salida salirAComprar 
-		//TODO: verificar que mirta no tenga salidas
-		//TODO: verificar que milena no tenga salidas 
+		perezGarcia.salirA(comprar)
+		assert.that(nicolas.actividades().contains(comprar))
+		assert.equals([], mirta.actividades())
+		assert.equals([], milena.actividades())
 	}
 
 
 	test "punto 3.1: Salida familiar no ok" {
-		var familiaMirtaYMilena = //TODO: obtener/construir una Familia con mirta y milena como integrantes
-		
-		//TODO: hacer que la familiaMirtaYMilena salga a comprar (no se puede!)
-
-		//TODO: verificar que mirta no tenga salidas
-		//TODO: verificar que milena no tenga salidas
+		const familiaMirtaYMilena = new Familia(integrantes = [mirta, milena])
+		familiaMirtaYMilena.salirA(comprar)
+		assert.equals([], mirta.actividades())
+		assert.equals([], milena.actividades())
 	}
 
 }
